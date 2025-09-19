@@ -1,32 +1,34 @@
-const test = require("ava");
+import { test, expect } from 'vitest';
 const Channel = require("../src/channel");
 
 function worker(i) {
   return i;
 }
 
-test.cb("executionCount = 0, execute -> stop", t => {
-  const ch = new Channel(worker, 1);
-  ch.on("stop", () => {
-    t.is(ch.isRunning, false);
-    t.end();
+test("executionCount = 0, execute -> stop", () => {
+  return new Promise((resolve) => {
+    const ch = new Channel(worker, 1);
+    ch.on("stop", () => {
+      expect(ch.isRunning).toBe(false);
+      resolve();
+    });
+
+    expect(ch.executionCount).toBe(0);
+    expect(ch.isRunning).toBe(true);
+
+    ch.execute();
   });
-
-  t.is(ch.executionCount, 0);
-  t.is(ch.isRunning, true);
-
-  ch.execute();
 });
 
-test("is not busy", t => {
+test("is not busy", () => {
   const ch = new Channel(worker, 1);
 
-  t.is(ch.isBusy(), false);
+  expect(ch.isBusy()).toBe(false);
 });
 
-test("is busy", t => {
+test("is busy", () => {
   const ch = new Channel(worker, 1);
   ch.executionCount = 100;
 
-  t.is(ch.isBusy(), true);
+  expect(ch.isBusy()).toBe(true);
 });
