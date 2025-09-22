@@ -18,7 +18,6 @@
   ],
   "scripts": {
     "start": "node example/main.js",
-    "clean": "rimraf coverage",
     "lint": "eslint --fix src test",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
@@ -35,7 +34,6 @@
     "husky": "9.1.7",
     "lint-staged": "16.1.6",
     "prettier": "3.6.2",
-    "rimraf": "6.0.1",
     "vitest": "3.2.4"
   },
   "engines": {
