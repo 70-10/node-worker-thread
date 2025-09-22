@@ -1,55 +1,47 @@
 {
   "name": "worker-thread",
-  "description": "Worker Thread Pattern for Node.js",
   "version": "1.1.0",
+  "description": "Worker Thread Pattern for Node.js",
+  "keywords": [],
+  "homepage": "https://github.com/70-10/node-worker-thread#readme",
   "bugs": {
     "url": "https://github.com/70-10/node-worker-thread/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/70-10/node-worker-thread.git"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "lint": "eslint --fix src test",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepare": "husky"
+  },
   "dependencies": {
-    "co": "4.6.0",
-    "eventemitter2": "^4.1.2",
-    "is-generator-function": "1.0.6"
+    "eventemitter3": "5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "9.35.0",
     "@vitest/coverage-v8": "3.2.4",
     "eslint": "9.35.0",
     "globals": "16.4.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^4.1.3",
-    "npm-run-all": "^4.1.1",
+    "husky": "9.1.7",
+    "lint-staged": "16.1.6",
     "prettier": "3.6.2",
-    "rimraf": "^2.6.2",
     "vitest": "3.2.4"
   },
   "engines": {
     "node": ">=22"
   },
-  "files": [
-    "src"
-  ],
-  "homepage": "https://github.com/70-10/node-worker-thread#readme",
-  "keywords": [],
-  "license": "MIT",
-  "main": "src/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/70-10/node-worker-thread.git"
-  },
-  "scripts": {
-    "start": "node example/main.js",
-    "clean": "rimraf coverage",
-    "lint": "eslint --fix src test",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "precommit": "lint-staged",
-    "prepush": "vitest run"
-  },
   "lint-staged": {
     "*.js": [
       "prettier --write",
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   }
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-const EventEmitter = require("eventemitter2").EventEmitter2;
+const EventEmitter = require("eventemitter3");
 const request = require("./request");
 
 class Channel extends EventEmitter {
@@ -28,7 +28,7 @@ class Channel extends EventEmitter {
       const task = this.requests.shift();
       request
         .execute(this.worker, task)
-        .then(r => this.done(null, r))
+        .then((r) => this.done(null, r))
         .catch(this.done);
     }
 
