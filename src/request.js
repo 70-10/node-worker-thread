@@ -1,13 +1,24 @@
 "use strict";
 
-const co = require("co");
-const isGenerator = require("is-generator-function");
-
 module.exports = {
   execute,
 };
 
-function execute(fn, args) {
-  const promisifyFn = isGenerator(fn) ? co.wrap(fn) : fn;
-  return Promise.resolve(promisifyFn(args));
+async function execute(fn, args) {
+  if (isGeneratorFunction(fn)) {
+    const generator = fn(args);
+    let result = generator.next();
+
+    while (!result.done) {
+      result = generator.next(await result.value);
+    }
+
+    return result.value;
+  }
+
+  return await fn(args);
+}
+
+function isGeneratorFunction(fn) {
+  return fn && fn.constructor && fn.constructor.name === "GeneratorFunction";
 }

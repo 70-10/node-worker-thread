@@ -6,9 +6,7 @@
     "url": "https://github.com/70-10/node-worker-thread/issues"
   },
   "dependencies": {
-    "co": "4.6.0",
-    "eventemitter2": "^4.1.2",
-    "is-generator-function": "1.0.6"
+    "eventemitter2": "^4.1.2"
   },
   "devDependencies": {
     "@eslint/js": "9.35.0",
