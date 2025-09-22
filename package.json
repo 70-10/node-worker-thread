@@ -17,7 +17,6 @@
     "src"
   ],
   "scripts": {
-    "start": "node example/main.js",
     "lint": "eslint --fix src test",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
